@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" target="_blank" ref="noopener" href="mainpage.css">
+<meta name="viewport" content="width=device width, initial-scale=1">
+<title>Mountain Man Dan</title>
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {box-sizing: border-box;}
+
+body {margin: 2.5%; font-family:fantasy}
+
+header, main, footer {
+  padding: 20px;
+}
+
+header {
+  background-color: #333;
+  color: #FFFFFF;
+}
+
+/* Add in a press button that allows for different size viewings */
+/* Also change the number of columns based on how many pizels are being used */
+/* The grid: Four equal columns that floats next to each other */
+.column {float: left; width: 25%; padding: 15px;}
+/* @media only screen and (min-width: 1000px) {.column{float: left; width: 20%; padding: 15px;}} */
+
+/* Style the images inside the grid */
+.column img {opacity: 0.95; cursor: pointer;}
+.column img:hover {opacity: 1;}
+
+/* Styling the horizontal photos*/
+.columnhor {float: left; width: 33%; padding: 15px;}
+.columnhor img {opacity: 0.95; cursor: pointer;}
+.columnhor img:hover {opacity: 1;}
+
+/* Clear floats after the columns */
+.row:after {content: ""; display: table; clear: both;}
+
+/* The expanding image container */
+.container,
+.container2,
+.container3,
+.container4,
+.container5,
+.container6,
+.container7,
+.container8,
+.container9,
+.container10,
+.container11,
+.container12,
+.container13,
+.container14,
+.container15 {
+  position: bottom;
+  display: none;}
+
+/* Expanding image text */
+#imgtext {
+  position: absolute;
+  bottom: -10px;
+  left: 15px;
+  color: white;
+  font-size: 20px;}
+
+#imgtext2 {
+  position: float;
+  color: white;
+  font-size: 20px;}
+
+.viewimagebtn {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  color: white;
+  font-size: 35px;
+  cursor: pointer;
+}
+
+.imgtext {
+  position: absolute;
+  bottom: -10px;
+  left: 15px;
+  color: white;
+  font-size: 20px;}
+
+/* Sizing for the images first the verticle and then the horizontal */
+.midimagevert {width: 17%;}
+@media only screen and (min-width: 1380px) {#midimagevert{max-width: 300px; width: 300px;}}
+@media only screen and (max-width: 1380px) {#midimagevert{max-width: 300px; width: 100%;}}
+@media only screen and (max-width: 300px) {#midimagevert{max-width: 250px; width: 100%;}}
+
+.horzimage {height: 20%}
+@media only screen and (min-width: 1360px){#horzimage{max-height: 300px; height: 100%}}
+@media only screen and (max-width: 1360px){#horzimage{max-width: 500px; width: 100%}}
+@media only screen and (max-width: 300px){#horzimage{max-width: 250px; width: 100%}}
+
+
+/* Closable button inside the expanded image */
+.closebtn {
+  position: absolute;
+  top: 25px;
+  right: 50px;
+  color: white;
+  font-size: 35px;
+  cursor: pointer;
+}
+
+.watermark {
+  position: relative;
+  bottom: 75px;
+  left: 50px;
+  color: white;
+  font-size: 20px;
+  font-family: fantasy;
+}
+
+
+a:link, a:visited {
+  color: white;
+  padding: 15px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+</style>
+</head>
+<body>
+<header>
+  <nav>
+    <a href="./index.html">Home</a>
+    <a href="./about.html">About</a>
+    <a href="./images.html">Photo Gallery</a>
+    <a href="./checkout.html">Cart</a>
+  </nav>
+    <h1>Mountain Man Dan's Gallery</h1>
+</header>
+
+<p>These photographs are available for purchase. Click on the enlarged image for purchase options.</p>
+<script>
+	var rownum = 1;
+  const one = 1;
+</script>
+
+<!-- Row 1 -->
+<div class="row">
+  <div class="columnhor">
+    <img src="Images to Sell/New England/IMG_5232.JPG" alt="Whipsy White Mountain Clouds" id="horzimage" data-image="image-page.html?image=Images to Sell/New England/IMG_5232.JPG" onclick="myFunction(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/New England/IMG_0858.JPG" alt="Star Lake" id="horzimage" data-image="image-page.html?image=Images to Sell/New England/IMG_0858.JPG" onclick="myFunction(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/New England/IMG_0834.jpeg" alt="Rocky Washington" id="horzimage" data-image="image-page.html?image=Images to Sell/New England/IMG_0834.jpeg" onclick="myFunction(this);">
+  </div>
+</div>
+
+<div class="row">
+  <div class="container" id="image-container">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <a id="imgLink" target="_blank"><img id="expandedImg" style="width:100%"></a>
+    <div id="imgtext"></div>
+    <div class="watermark">© Mountain Man Dan</div>
+    <span onclick="OpenImageFun(this)"></span>
+  </div>
+</div>
+
+<!-- Row 2 -->
+<div class="row">
+  <div class="columnhor">
+    <img src="Images to Sell/New England/IMG_3990.jpeg" alt="Frosty Rock Wall" id="horzimage" data-image="image-page.html?image=Images to Sell/New England/IMG_3990.jpeg" onclick="myFunction2(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/New England/IMG_3957.jpeg" alt="Frosty Clover" id="horzimage" data-image="image-page.html?image=Images to Sell/New England/IMG_3957.jpeg" onclick="myFunction2(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/New England/IMG_5325.jpeg" alt="Mossy Log" id="horzimage" data-image="image-page.html?image=Images to Sell/New England/IMG_5325.jpeg" onclick="myFunction2(this);">
+  </div>
+</div>
+
+<div class="row">
+  <div class="container" id="image-container2">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <a id="imgLink2" target="_blank"><img id="expandedImg2" style="width:100%"></a>
+    <div id="imgtext2"></div>
+    <div class="watermark">© Mountain Man Dan</div>
+    <span onclick="OpenImageFun(this)"></span>
+  </div>
+</div>
+
+<!-- Row 3 -->
+<div class="row">
+  <div class="columnhor">
+    <img src="Images to Sell/New England/IMG_0863.jpeg" alt="Flowering from the Elements" id="horzimage" data-image="image-page.html?image=Images to Sell/New England/IMG_0863.jpeg" onclick="myFunction3(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/New England/IMG_4302.jpeg" alt="Creamsickle Cloudglow" id="horzimage" data-image="image-page.html?image=Images to Sell/New England/IMG_4302.jpeg" onclick="myFunction3(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/New England/IMG_2489.jpeg" alt="Ripples in Carter Notch" id="horzimage" data-image="image-page.html?image=Images to Sell/New England/IMG_2489.jpeg" onclick="myFunction3(this);">
+  </div>
+</div>
+
+<div class="row">
+  <div class="container" id="image-container3">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <a id="imgLink3" target="_blank"><img id="expandedImg3" style="width:100%"></a>
+    <div id="imgtext3"></div>
+    <div class="watermark">© Mountain Man Dan</div>
+    <span onclick="OpenImageFun(this)"></span>
+  </div>
+</div>
+
+<!-- Row 4 Verticle -->
+<div class="row">
+  <div class="column">
+    <img src="Images to Sell/New England/IMG_1250.jpeg" alt="Pink Pistols" id="midimagevert" data-image="image-page.html?image=Images to Sell/New England/IMG_1250.jpeg" onclick="myFunction4(this);">
+  </div>
+  <div class="column">
+    <img src="Images to Sell/New England/IMG_1218.jpeg" alt="Pink Rose" id="midimagevert" data-image="image-page.html?image=Images to Sell/New England/IMG_1218.jpeg" onclick="myFunction4(this);">
+  </div>
+  <div class="column">
+    <img src="Images to Sell/New England/IMG_1487.jpeg" alt="Ripples in Carter Notch" id="midimagevert" data-image="image-page.html?image=Images to Sell/New England/IMG_1487.jpeg" onclick="myFunction4(this);">
+  </div>
+  <div class="column">
+    <img src="Images to Sell/New England/IMG_0958.jpeg" alt="Floating off the Prez" id="midimagevert" data-image="image-page.html?image=Images to Sell/New England/IMG_0958.jpeg" onclick="myFunction4(this);">
+  </div>
+</div>
+
+<div class="row">
+  <div class="container" id="image-container4">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <a id="imgLink4" target="_blank"><img id="expandedImg4" style="width:100%"></a>
+    <div id="imgtext4"></div>
+    <div class="watermark">© Mountain Man Dan</div>
+    <span onclick="OpenImageFun(this)"></span>
+  </div>
+</div>
+
+<!-- Row 5 -->
+<div class="row">
+  <div class="columnhor">
+    <img src="Images to Sell/New England/IMG_5467.jpeg" alt="Crashing on Little Thrumbcap" id="horzimage" data-image="image-page.html?image=Images to Sell/New England/IMG_5467.jpeg" onclick="myFunction5(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/New England/IMG_6694.jpeg" alt="Pemiquid Pool" id="horzimage" data-image="image-page.html?image=Images to Sell/New England/IMG_6694.jpeg" onclick="myFunction5(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/New England/IMG_9517.jpeg" alt="UP Beach Shade" id="horzimage" data-image="image-page.html?image=Images to Sell/New England/IMG_9517.jpeg" onclick="myFunction5(this);">
+  </div>
+</div>
+
+<div class="row">
+  <div class="container" id="image-container5">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <a id="imgLink5" target="_blank"><img id="expandedImg5" style="width:100%"></a>
+    <div id="imgtext5"></div>
+    <div class="watermark">© Mountain Man Dan</div>
+    <span onclick="OpenImageFun(this)"></span>
+  </div>
+</div>
+
+<!-- Row 6 -->
+<div class="row">
+  <div class="columnhor">
+    <img src="Images to Sell/New England/IMG_0241.jpeg" alt="Valdez Bay" id="horzimage" data-image="image-page.html?image=Images to Sell/New England/IMG_0241.jpeg" onclick="myFunction6(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/New England/IMG_0439.jpeg" alt="Denali Mound" id="horzimage" data-image="image-page.html?image=Images to Sell/New England/IMG_0439.jpeg" onclick="myFunction6(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/New England/IMG_0512.jpeg" alt="Matanuska Halo" id="horzimage" data-image="image-page.html?image=Images to Sell/New England/IMG_0512.jpeg" onclick="myFunction6(this);">
+  </div>
+</div>
+
+<div class="row">
+  <div class="container" id="image-container6">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <a id="imgLink6" target="_blank"><img id="expandedImg6" style="width:100%"></a>
+    <div id="imgtext6"></div>
+    <div class="watermark">© Mountain Man Dan</div>
+    <span onclick="OpenImageFun(this)"></span>
+  </div>
+</div>
+
+<!-- Row 7 -->
+<div class="row">
+  <div class="columnhor">
+    <img src="Images to Sell/New England/DSC_5825.jpeg" alt="Reaching of Winter Sun" id="horzimage" data-image="image-page.html?image=Images to Sell/New England/DSC_5825.jpeg" onclick="myFunction7(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/New England/IMG_5349.jpeg" alt="Above the Pillows of Snow" id="horzimage" data-image="image-page.html?image=Images to Sell/New England/IMG_5349.jpeg" onclick="myFunction7(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/New England/IMG_8573.jpeg" alt="Frosty Franconia" id="horzimage" data-image="image-page.html?image=Images to Sell/New England/IMG_8573.jpeg" onclick="myFunction7(this);">
+  </div>
+</div>
+
+<div class="row">
+  <div class="container" id="image-container7">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <a id="imgLink7" target="_blank"><img id="expandedImg7" style="width:100%"></a>
+    <div id="imgtext7"></div>
+    <div class="watermark">© Mountain Man Dan</div>
+    <span onclick="OpenImageFun(this)"></span>
+  </div>
+</div>
+
+<!-- Row 8 -->
+<div class="row">
+  <div class="columnhor">
+    <img src="Images to Sell/New England/IMG_8581.jpeg" alt="Nameless" id="horzimage" data-image="image-page.html?image=Images to Sell/New England/IMG_8581.jpeg" onclick="myFunction8(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/New England/IMG_5343.jpeg" alt="Blustery Tuckermans" id="horzimage" data-image="image-page.html?image=Images to Sell/New England/IMG_5343.jpeg" onclick="myFunction8(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/New England/IMG_5368.jpeg" alt="Frosty Franconia" id="horzimage" data-image="image-page.html?image=Images to Sell/New England/IMG_5368.jpeg" onclick="myFunction8(this);">
+  </div>
+</div>
+
+<div class="row">
+  <div class="container" id="image-container8">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <a id="imgLink8" target="_blank"><img id="expandedImg8" style="width:100%"></a>
+    <div id="imgtext8"></div>
+    <div class="watermark">© Mountain Man Dan</div>
+    <span onclick="OpenImageFun(this)"></span>
+  </div>
+</div>
+
+<!-- Row 9 Verticle -->
+<div class="row">
+  <div class="column">
+    <img src="Images to Sell/New England/IMG_8555.jpeg" alt="Grasp" id="midimagevert" data-image="image-page.html?image=Images to Sell/New England/IMG_8555.jpeg" onclick="myFunction9(this);">
+  </div>
+  <div class="column">
+    <img src="Images to Sell/New England/IMG_5558.jpeg" alt="Pristine Trillium" id="midimagevert" data-image="image-page.html?image=Images to Sell/New England/IMG_5558.jpeg" onclick="myFunction9(this);">
+  </div>
+  <div class="column">
+    <img src="Images to Sell/New England/IMG_0397.jpeg" alt="Alaskian Bell" id="midimagevert" data-image="image-page.html?image=Images to Sell/New England/IMG_0397.jpeg" onclick="myFunction9(this);">
+  </div>  
+  <div class="column">
+    <img src="Images to Sell/New England/IMG_2568.jpeg" alt="Franconia Falls" id="midimagevert" data-image="image-page.html?image=Images to Sell/New England/IMG_2568.jpeg" onclick="myFunction9(this);">
+  </div>
+</div>
+
+<div class="row">
+  <div class="container" id="image-container9">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <a id="imgLink9" target="_blank"><img id="expandedImg9" style="width:100%"></a>
+    <div id="imgtext9"></div>
+    <div class="watermark">© Mountain Man Dan</div>
+    <span onclick="OpenImageFun(this)"></span>
+  </div>
+</div>
+
+<!-- Row 10 -->
+<div class="row">
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_1152.jpeg" alt="Hazy Beach" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_1152.jpeg" onclick="myFunction10(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_1170.jpeg" alt="Broad Dune" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_1170.jpeg" onclick="myFunction10(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_1190.jpeg" alt="Puckered Out" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_1190.jpeg" onclick="myFunction10(this);">
+  </div>
+</div>
+
+<div class="row">
+  <div class="container" id="image-container10">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <a id="imgLink10" target="_blank"><img id="expandedImg10" style="width:100%"></a>
+    <div id="imgtext10"></div>
+    <div class="watermark">© Mountain Man Dan</div>
+    <span onclick="OpenImageFun(this)"></span>
+  </div>
+</div>
+
+<!-- Row 11 -->
+<div class="row">
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_6483.jpeg" alt="Dune Flower" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_6483.jpeg" onclick="myFunction11(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_6489.jpeg" alt="Morning Whites" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_6489.jpeg" onclick="myFunction11(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_6513.jpeg" alt="Prickly Love" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_6513.jpeg" onclick="myFunction11(this);">
+  </div>
+</div>
+
+<div class="row">
+  <div class="container" id="image-container11">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <a id="imgLink11" target="_blank"><img id="expandedImg11" style="width:100%"></a>
+    <div id="imgtext11"></div>
+    <div class="watermark">© Mountain Man Dan</div>
+    <span onclick="OpenImageFun(this)"></span>
+  </div>
+</div>
+
+<!-- Row 12 -->
+<div class="row">
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_6531.jpeg" alt="Dune Flower" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_6531.jpeg" onclick="myFunction12(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_0263.jpeg" alt="BadLand Flowers" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_0263.jpeg" onclick="myFunction12(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_6603.jpeg" alt="Prickly Love" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_6603.jpeg" onclick="myFunction12(this);">
+  </div>
+</div>
+
+<div class="row">
+  <div class="container" id="image-container12">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <a id="imgLink12" target="_blank"><img id="expandedImg12" style="width:100%"></a>
+    <div id="imgtext12"></div>
+    <div class="watermark">© Mountain Man Dan</div>
+    <span onclick="OpenImageFun(this)"></span>
+  </div>
+</div>
+
+<!-- Row 13 -->
+<div class="row">
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_6568.jpeg" alt="Morning Mollispetram" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_6568.jpeg" onclick="myFunction13(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_0206.jpeg" alt="Verdant BadLand" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_0206.jpeg" onclick="myFunction13(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_6567.jpeg" alt="BadLand Face" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_6567.jpeg" onclick="myFunction13(this);">
+  </div>
+</div>
+
+<div class="row">
+  <div class="container" id="image-container13">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <a id="imgLink13" target="_blank"><img id="expandedImg13" style="width:100%"></a>
+    <div id="imgtext13"></div>
+    <div class="watermark">© Mountain Man Dan</div>
+    <span onclick="OpenImageFun(this)"></span>
+  </div>
+</div>
+
+<!-- Row 14 -->
+<div class="row">
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_6671.jpeg" alt="Prarie Lunch" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_6671.jpeg" onclick="myFunction14(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_6672.jpeg" alt="Beefy Bison" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_6672.jpeg" onclick="myFunction14(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_6658.jpeg" alt="Over His Kingdom" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_6658.jpeg" onclick="myFunction14(this);">
+  </div>
+</div>
+
+<div class="row">
+  <div class="container" id="image-container14">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <a id="imgLink14" target="_blank"><img id="expandedImg14" style="width:100%"></a>
+    <div id="imgtext14"></div>
+    <div class="watermark">© Mountain Man Dan</div>
+    <span onclick="OpenImageFun(this)"></span>
+  </div>
+</div>
+
+<!-- Row 15 -->
+<div class="row">
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_6719.jpeg" alt="Yellowbird" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_6719.jpeg" onclick="myFunction15(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_6725.jpeg" alt="Keeping Watch" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_6725.jpeg" onclick="myFunction15(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_6759.jpeg" alt="Dust Bath" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_6759.jpeg" onclick="myFunction15(this);">
+  </div>
+</div>
+
+<div class="row">
+  <div class="container" id="image-container15">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <a id="imgLink15" target="_blank"><img id="expandedImg15" style="width:100%"></a>
+    <div id="imgtext15"></div>
+    <div class="watermark">© Mountain Man Dan</div>
+    <span onclick="OpenImageFun(this)"></span>
+  </div>
+</div>
+
+<!-- Row 16 Verticle -->
+<div class="row">
+  <div class="column">
+    <img src="Images to Sell/Out West/IMG_6750.jpeg" alt="Watching Over Baby Bison" id="midimagevert" data-image="image-page.html?image=Images to Sell/Out West/IMG_6750.jpeg" onclick="myFunction16(this);">
+  </div>
+  <div class="column">
+    <img src="Images to Sell/Out West/IMG_1216.jpeg" alt="Path from the Heavens" id="midimagevert" data-image="image-page.html?image=Images to Sell/Out West/IMG_1216.jpeg" onclick="myFunction16(this);">
+  </div>
+  <div class="column">
+    <img src="Images to Sell/Out West/IMG_0737.jpeg" alt="RainbowStone" id="midimagevert" data-image="image-page.html?image=Images to Sell/Out West/IMG_0737.jpeg" onclick="myFunction16(this);">
+  </div>
+  <div class="column">
+    <img src="Images to Sell/Out West/IMG_7333.jpeg" alt="Bursting Forth" id="midimagevert" data-image="image-page.html?image=Images to Sell/Out West/IMG_7333.jpeg" onclick="myFunction16(this);">
+  </div>
+</div>
+
+<div class="row">
+  <div class="container" id="image-container16">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <a id="imgLink16" target="_blank"><img id="expandedImg16" style="width:100%"></a>
+    <div id="imgtext16"></div>
+    <div class="watermark">© Mountain Man Dan</div>
+    <span onclick="OpenImageFun(this)"></span>
+  </div>
+</div>
+
+<!-- Row 17 -->
+<div class="row">
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_6766.jpeg" alt="Checking On" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_6766.jpeg" onclick="myFunction17(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_6781.jpeg" alt="Prongless" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_6781.jpeg" onclick="myFunction17(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_6794.jpeg" alt="Morning Bison" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_6794.jpeg" onclick="myFunction17(this);">
+  </div>
+</div>
+
+<div class="row">
+  <div class="container" id="image-container17">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <a id="imgLink17" target="_blank"><img id="expandedImg17" style="width:100%"></a>
+    <div id="imgtext17"></div>
+    <div class="watermark">© Mountain Man Dan</div>
+    <span onclick="OpenImageFun(this)"></span>
+  </div>
+</div>
+
+<!-- Row 18 -->
+<div class="row">
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_6343.jpeg" alt="Glacier Stream" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_6343.jpeg" onclick="myFunction18(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_0551.jpeg" alt="Peering Tetons" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_0551.jpeg" onclick="myFunction18(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_0786.jpeg" alt="Extinction" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_0786.jpeg" onclick="myFunction18(this);">
+  </div>
+</div>
+
+<div class="row">
+  <div class="container" id="image-container18">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <a id="imgLink18" target="_blank"><img id="expandedImg18" style="width:100%"></a>
+    <div id="imgtext18"></div>
+    <div class="watermark">© Mountain Man Dan</div>
+    <span onclick="OpenImageFun(this)"></span>
+  </div>
+</div>
+
+<!-- Row 19 -->
+<div class="row">
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_7376.jpeg" alt="Pirsmatic Afterglow" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_7376.jpeg" onclick="myFunction19(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_7375.jpeg" alt="Prismatic Eye" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_7375.jpeg" onclick="myFunction19(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_0787.jpeg" alt="Porceline Falls" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_0787.jpeg" onclick="myFunction19(this);">
+  </div>
+</div>
+
+<div class="row">
+  <div class="container" id="image-container19">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <a id="imgLink19" target="_blank"><img id="expandedImg19" style="width:100%"></a>
+    <div id="imgtext19"></div>
+    <div class="watermark">© Mountain Man Dan</div>
+    <span onclick="OpenImageFun(this)"></span>
+  </div>
+</div>
+
+<!-- Row 20 -->
+<div class="row">
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_1048.jpeg" alt="Fire Flower" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_1048.jpeg" onclick="myFunction20(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_0435.jpeg" alt="Kemmerer Camping" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_0435.jpeg" onclick="myFunction20(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_1053.jpeg" alt="Dino Ribbons" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_1053.jpeg" onclick="myFunction20(this);">
+  </div>
+</div>
+
+<div class="row">
+  <div class="container" id="image-container20">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <a id="imgLink20" target="_blank"><img id="expandedImg20" style="width:100%"></a>
+    <div id="imgtext20"></div>
+    <div class="watermark">© Mountain Man Dan</div>
+    <span onclick="OpenImageFun(this)"></span>
+  </div>
+</div>
+
+<!-- Row 21 -->
+<div class="row">
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_1068.jpeg" alt="Sandstone Mound" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_1068.jpeg" onclick="myFunction21(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_7435.jpeg" alt="Patience Peaks" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_7435.jpeg" onclick="myFunction21(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_7440.jpeg" alt="Desert Flower" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_7443.jpeg" onclick="myFunction21(this);">
+  </div>
+</div>
+
+<div class="row">
+  <div class="container" id="image-container21">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <a id="imgLink21" target="_blank"><img id="expandedImg21" style="width:100%"></a>
+    <div id="imgtext21"></div>
+    <div class="watermark">© Mountain Man Dan</div>
+    <span onclick="OpenImageFun(this)"></span>
+  </div>
+</div>
+
+<!-- Row 22 -->
+<div class="row">
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_1088.jpeg" alt="Historic Utah Coal Shack" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_1088.jpeg" onclick="myFunction22(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_1923.jpeg" alt="SunSet Between the Layers" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_1923.jpeg" onclick="myFunction22(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_7453.jpeg" alt="Klondike Blaze" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_7453.jpeg" onclick="myFunction22(this);">
+  </div>
+</div>
+
+<div class="row">
+  <div class="container" id="image-container22">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <a id="imgLink22" target="_blank"><img id="expandedImg22" style="width:100%"></a>
+    <div id="imgtext22"></div>
+    <div class="watermark">© Mountain Man Dan</div>
+    <span onclick="OpenImageFun(this)"></span>
+  </div>
+</div>
+
+<!-- Row 23 -->
+<div class="row">
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_1261.jpeg" alt="Sunrise Between the Teeth" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_1261.jpeg" onclick="myFunction23(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_1268.jpeg" alt="Moab Sage" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_1268.jpeg" onclick="myFunction23(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_1275.jpeg" alt="Arches Morning Deer" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_1275.jpeg" onclick="myFunction23(this);">
+  </div>
+</div>
+
+<div class="row">
+  <div class="container" id="image-container23">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <a id="imgLink23" target="_blank"><img id="expandedImg23" style="width:100%"></a>
+    <div id="imgtext23"></div>
+    <div class="watermark">© Mountain Man Dan</div>
+    <span onclick="OpenImageFun(this)"></span>
+  </div>
+</div>
+
+<!-- Row 24 -->
+<div class="row">
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_1279.jpeg" alt="Blue Devils Garden" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_1279.jpeg" onclick="myFunction24(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_7496.jpeg" alt="Photo X" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_7496.jpeg" onclick="myFunction24(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_1284.jpeg" alt="Landscape Arch" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_1284.jpeg" onclick="myFunction24(this);">
+  </div>
+</div>
+
+<div class="row">
+  <div class="container" id="image-container24">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <a id="imgLink24" target="_blank"><img id="expandedImg24" style="width:100%"></a>
+    <div id="imgtext24"></div>
+    <div class="watermark">© Mountain Man Dan</div>
+    <span onclick="OpenImageFun(this)"></span>
+  </div>
+</div>
+
+<!-- Row 25 -->
+<div class="row">
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_1293.jpeg" alt="Landscape and Navajo Arches" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_1293.jpeg" onclick="myFunction25(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_1347.jpeg" alt="Through the Eye" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_1347.jpeg" onclick="myFunction25(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_1326.jpeg" alt="Sage" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_1326.jpeg" onclick="myFunction25(this);">
+  </div>
+</div>
+
+<div class="row">
+  <div class="container" id="image-container25">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <a id="imgLink25" target="_blank"><img id="expandedImg25" style="width:100%"></a>
+    <div id="imgtext25"></div>
+    <div class="watermark">© Mountain Man Dan</div>
+    <span onclick="OpenImageFun(this)"></span>
+  </div>
+</div>
+
+<!-- Row 26 -->
+<div class="row">
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_1351.jpeg" alt="Double O" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_1351.jpeg" onclick="myFunction26(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_7459.jpeg" alt="Photo Y" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_7459.jpeg" onclick="myFunction26(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_7465.jpeg" alt="Deer in the Devils Garden" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_7465.jpeg" onclick="myFunction26(this);">
+  </div>
+</div>
+
+<div class="row">
+  <div class="container" id="image-container26">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <a id="imgLink26" target="_blank"><img id="expandedImg26" style="width:100%"></a>
+    <div id="imgtext26"></div>
+    <div class="watermark">© Mountain Man Dan</div>
+    <span onclick="OpenImageFun(this)"></span>
+  </div>
+</div>
+
+<!-- Row 27 -->
+<div class="row">
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_1505.jpeg" alt="Painted Cliff" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_1505.jpeg" onclick="myFunction27(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_0179.jpeg" alt="Sunset Cactus" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_0179.jpeg" onclick="myFunction27(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_6523.jpeg" alt="Morning Bad Deer" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_6523.jpeg" onclick="myFunction27(this);">
+  </div>
+</div>
+
+<div class="row">
+  <div class="container" id="image-container27">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <a id="imgLink27" target="_blank"><img id="expandedImg27" style="width:100%"></a>
+    <div id="imgtext27"></div>
+    <div class="watermark">© Mountain Man Dan</div>
+    <span onclick="OpenImageFun(this)"></span>
+  </div>
+</div>
+
+<!-- Row 28 -->
+<div class="row">
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_1276.jpeg" alt="Painted Cliff" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_1276.jpeg" onclick="myFunction28(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_7582.jpeg" alt="Sunset Cactus" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_7582.jpeg" onclick="myFunction28(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_2714.jpeg" alt="Morning Bad Deer" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_2714.jpeg" onclick="myFunction28(this);">
+  </div>
+</div>
+
+<div class="row">
+  <div class="container" id="image-container28">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <a id="imgLink28" target="_blank"><img id="expandedImg28" style="width:100%"></a>
+    <div id="imgtext28"></div>
+    <div class="watermark">© Mountain Man Dan</div>
+    <span onclick="OpenImageFun(this)"></span>
+  </div>
+</div>
+
+<!-- Row 29 -->
+<div class="row">
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_1522.jpeg" alt="Elburt Shrub" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_1522.jpeg" onclick="myFunction29(this);">
+  </div>
+  <div class="columnhor">
+    <img src="Images to Sell/Out West/IMG_0111.jpeg" alt="Zealand Snow" id="horzimage" data-image="image-page.html?image=Images to Sell/Out West/IMG_0111.jpeg" onclick="myFunction29(this);">
+  </div>
+</div>
+
+<div class="row">
+  <div class="container" id="image-container29">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <a id="imgLink29" target="_blank"><img id="expandedImg29" style="width:100%"></a>
+    <div id="imgtext29"></div>
+    <div class="watermark">© Mountain Man Dan</div>
+    <span onclick="OpenImageFun(this)"></span>
+  </div>
+</div>
+
+
+<script>
+  function closeAllContainers(exceptContainer) {
+    const containers = document.querySelectorAll(".container, .container2, .container3, .container4, .container5, .container6, .container7, .container8, .container9, .container10");
+    containers.forEach(container => {
+      if (container !== exceptContainer) {
+        container.style.display = "none";
+      }
+    });
+  }
+
+  function addWatermark(container) {
+    const watermark = document.createElement("div");
+    watermark.classList.add("watermark");
+    watermark.textContent = "© Mountain Man Dan";
+    container.appendChild(watermark);
+  }
+
+  function myFunction(imgs) {
+  var expandImg = document.getElementById("expandedImg");
+  var imgLink = document.getElementById("imgLink");
+  expandImg.src = imgs.src;
+  // var imgText = document.getElementById("imgtext");
+  // imgText.innerHTML = imgs.alt;
+
+  const imageName = encodeURIComponent(imgs.alt);
+  imgLink.href = "image-page.html?image=" + encodeURIComponent(imgs.src) + "&name=" + imageName;
+
+  var container = document.getElementById("image-container");
+  closeAllContainers(container); // Close all other containers
+  container.style.display = "block";
+}
+
+  function myFunction2(imgs) {
+    var expandImg = document.getElementById("expandedImg2");
+    // var imgText = document.getElementById("imgtext2");
+    var imgLink = document.getElementById("imgLink2");
+    expandImg.src = imgs.src;
+    // imgText.innerHTML = imgs.alt;
+
+    const imageName = encodeURIComponent(imgs.alt);
+    imgLink.href = "image-page.html?image=" + encodeURIComponent(imgs.src) + "&name=" + imageName;
+
+    var container = document.getElementById("image-container2");
+    closeAllContainers(container); // Close all other containers
+    container.style.display = "block";
+  }
+  // Function to hide image containers
+function OpenImageFun(imgs){
+  var container = imgs.parentElement;
+  container.style.display = "none"; // Hide the container
+}
+
+// The rest of the functions for the containers
+function myFunction3(imgs) {
+    var expandImg = document.getElementById("expandedImg3");
+    // var imgText = document.getElementById("imgtext3");
+    var imgLink = document.getElementById("imgLink3");
+    expandImg.src = imgs.src;
+    // imgText.innerHTML = imgs.alt;
+
+    const imageName = encodeURIComponent(imgs.alt);
+    imgLink.href = "image-page.html?image=" + encodeURIComponent(imgs.src) + "&name=" + imageName;
+
+    var container = document.getElementById("image-container3");
+    closeAllContainers(container); // Close all other containers
+    container.style.display = "block";
+  }
+function myFunction4(imgs) {
+    var expandImg = document.getElementById("expandedImg4");
+    // var imgText = document.getElementById("imgtext4");
+    var imgLink = document.getElementById("imgLink4");
+    expandImg.src = imgs.src;
+    // imgText.innerHTML = imgs.alt;
+
+    const imageName = encodeURIComponent(imgs.alt);
+    imgLink.href = "image-page.html?image=" + encodeURIComponent(imgs.src) + "&name=" + imageName;
+
+    var container = document.getElementById("image-container4");
+    closeAllContainers(container); // Close all other containers
+    container.style.display = "block";
+  }
+function myFunction5(imgs) {
+    var expandImg = document.getElementById("expandedImg5");
+    // var imgText = document.getElementById("imgtext5");
+    var imgLink = document.getElementById("imgLink5");
+    expandImg.src = imgs.src;
+    // imgText.innerHTML = imgs.alt;
+
+    const imageName = encodeURIComponent(imgs.alt);
+    imgLink.href = "image-page.html?image=" + encodeURIComponent(imgs.src) + "&name=" + imageName;
+
+    var container = document.getElementById("image-container5");
+    closeAllContainers(container); // Close all other containers
+    container.style.display = "block";
+  }
+function myFunction6(imgs) {
+    var expandImg = document.getElementById("expandedImg6");
+    // var imgText = document.getElementById("imgtext6");
+    var imgLink = document.getElementById("imgLink6");
+    expandImg.src = imgs.src;
+    // imgText.innerHTML = imgs.alt;
+
+    const imageName = encodeURIComponent(imgs.alt);
+    imgLink.href = "image-page.html?image=" + encodeURIComponent(imgs.src) + "&name=" + imageName;
+
+    var container = document.getElementById("image-container6");
+    closeAllContainers(container); // Close all other containers
+    container.style.display = "block";
+  }
+function myFunction7(imgs) {
+    var expandImg = document.getElementById("expandedImg7");
+    // var imgText = document.getElementById("imgtext7");
+    var imgLink = document.getElementById("imgLink7");
+    expandImg.src = imgs.src;
+    // imgText.innerHTML = imgs.alt;
+
+    const imageName = encodeURIComponent(imgs.alt);
+    imgLink.href = "image-page.html?image=" + encodeURIComponent(imgs.src) + "&name=" + imageName;
+
+    var container = document.getElementById("image-container7");
+    closeAllContainers(container); // Close all other containers
+    container.style.display = "block";
+  }
+function myFunction8(imgs) {
+    var expandImg = document.getElementById("expandedImg8");
+    // var imgText = document.getElementById("imgtext8");
+    var imgLink = document.getElementById("imgLink8");
+    expandImg.src = imgs.src;
+    // imgText.innerHTML = imgs.alt;
+
+    const imageName = encodeURIComponent(imgs.alt);
+    imgLink.href = "image-page.html?image=" + encodeURIComponent(imgs.src) + "&name=" + imageName;
+
+    var container = document.getElementById("image-container8");
+    closeAllContainers(container); // Close all other containers
+    container.style.display = "block";
+  }
+function myFunction9(imgs) {
+    var expandImg = document.getElementById("expandedImg9");
+    // var imgText = document.getElementById("imgtext9");
+    var imgLink = document.getElementById("imgLink9");
+    expandImg.src = imgs.src;
+    // imgText.innerHTML = imgs.alt;
+
+    const imageName = encodeURIComponent(imgs.alt);
+    imgLink.href = "image-page.html?image=" + encodeURIComponent(imgs.src) + "&name=" + imageName;
+
+    var container = document.getElementById("image-container9");
+    closeAllContainers(container); // Close all other containers
+    container.style.display = "block";
+  }
+function myFunction10(imgs) {
+    var expandImg = document.getElementById("expandedImg10");
+    // var imgText = document.getElementById("imgtext10");
+    var imgLink = document.getElementById("imgLink10");
+    expandImg.src = imgs.src;
+    // imgText.innerHTML = imgs.alt;
+
+    const imageName = encodeURIComponent(imgs.alt);
+    imgLink.href = "image-page.html?image=" + encodeURIComponent(imgs.src) + "&name=" + imageName;
+
+    var container = document.getElementById("image-container10");
+    closeAllContainers(container); // Close all other containers
+    container.style.display = "block";
+  }
+function myFunction11(imgs) {
+    var expandImg = document.getElementById("expandedImg11");
+    // var imgText = document.getElementById("imgtext11");
+    var imgLink = document.getElementById("imgLink11");
+    expandImg.src = imgs.src;
+    // imgText.innerHTML = imgs.alt;
+
+    const imageName = encodeURIComponent(imgs.alt);
+    imgLink.href = "image-page.html?image=" + encodeURIComponent(imgs.src) + "&name=" + imageName;
+
+    var container = document.getElementById("image-container11");
+    closeAllContainers(container); // Close all other containers
+    container.style.display = "block";
+  }
+function myFunction12(imgs) {
+    var expandImg = document.getElementById("expandedImg12");
+    // var imgText = document.getElementById("imgtext12");
+    var imgLink = document.getElementById("imgLink12");
+    expandImg.src = imgs.src;
+    // imgText.innerHTML = imgs.alt;
+
+    const imageName = encodeURIComponent(imgs.alt);
+    imgLink.href = "image-page.html?image=" + encodeURIComponent(imgs.src) + "&name=" + imageName;
+
+    var container = document.getElementById("image-container12");
+    closeAllContainers(container); // Close all other containers
+    container.style.display = "block";
+  }
+function myFunction13(imgs) {
+    var expandImg = document.getElementById("expandedImg13");
+    // var imgText = document.getElementById("imgtext13");
+    var imgLink = document.getElementById("imgLink13");
+    expandImg.src = imgs.src;
+    // imgText.innerHTML = imgs.alt;
+
+    const imageName = encodeURIComponent(imgs.alt);
+    imgLink.href = "image-page.html?image=" + encodeURIComponent(imgs.src) + "&name=" + imageName;
+
+    var container = document.getElementById("image-container13");
+    closeAllContainers(container); // Close all other containers
+    container.style.display = "block";
+  }
+function myFunction14(imgs) {
+    var expandImg = document.getElementById("expandedImg14");
+    // var imgText = document.getElementById("imgtext14");
+    var imgLink = document.getElementById("imgLink14");
+    expandImg.src = imgs.src;
+    // imgText.innerHTML = imgs.alt;
+
+    const imageName = encodeURIComponent(imgs.alt);
+    imgLink.href = "image-page.html?image=" + encodeURIComponent(imgs.src) + "&name=" + imageName;
+
+    var container = document.getElementById("image-container14");
+    closeAllContainers(container); // Close all other containers
+    container.style.display = "block";
+  }
+function myFunction15(imgs) {
+    var expandImg = document.getElementById("expandedImg15");
+    // var imgText = document.getElementById("imgtext15");
+    var imgLink = document.getElementById("imgLink15");
+    expandImg.src = imgs.src;
+    // imgText.innerHTML = imgs.alt;
+
+    const imageName = encodeURIComponent(imgs.alt);
+    imgLink.href = "image-page.html?image=" + encodeURIComponent(imgs.src) + "&name=" + imageName;
+
+    var container = document.getElementById("image-container15");
+    closeAllContainers(container); // Close all other containers
+    container.style.display = "block";
+  }
+function myFunction16(imgs) {
+    var expandImg = document.getElementById("expandedImg16");
+    // var imgText = document.getElementById("imgtext16");
+    var imgLink = document.getElementById("imgLink16");
+    expandImg.src = imgs.src;
+    // imgText.innerHTML = imgs.alt;
+
+    const imageName = encodeURIComponent(imgs.alt);
+    imgLink.href = "image-page.html?image=" + encodeURIComponent(imgs.src) + "&name=" + imageName;
+
+    var container = document.getElementById("image-container16");
+    closeAllContainers(container); // Close all other containers
+    container.style.display = "block";
+  }
+function myFunction17(imgs) {
+    var expandImg = document.getElementById("expandedImg17");
+    // var imgText = document.getElementById("imgtext17");
+    var imgLink = document.getElementById("imgLink17");
+    expandImg.src = imgs.src;
+    // imgText.innerHTML = imgs.alt;
+
+    const imageName = encodeURIComponent(imgs.alt);
+    imgLink.href = "image-page.html?image=" + encodeURIComponent(imgs.src) + "&name=" + imageName;
+
+    var container = document.getElementById("image-container17");
+    closeAllContainers(container); // Close all other containers
+    container.style.display = "block";
+  }
+function myFunction18(imgs) {
+    var expandImg = document.getElementById("expandedImg18");
+    // var imgText = document.getElementById("imgtext18");
+    var imgLink = document.getElementById("imgLink18");
+    expandImg.src = imgs.src;
+    // imgText.innerHTML = imgs.alt;
+
+    const imageName = encodeURIComponent(imgs.alt);
+    imgLink.href = "image-page.html?image=" + encodeURIComponent(imgs.src) + "&name=" + imageName;
+
+    var container = document.getElementById("image-container18");
+    closeAllContainers(container); // Close all other containers
+    container.style.display = "block";
+  }
+function myFunction19(imgs) {
+    var expandImg = document.getElementById("expandedImg19");
+    // var imgText = document.getElementById("imgtext19");
+    var imgLink = document.getElementById("imgLink19");
+    expandImg.src = imgs.src;
+    // imgText.innerHTML = imgs.alt;
+
+    const imageName = encodeURIComponent(imgs.alt);
+    imgLink.href = "image-page.html?image=" + encodeURIComponent(imgs.src) + "&name=" + imageName;
+
+    var container = document.getElementById("image-container19");
+    closeAllContainers(container); // Close all other containers
+    container.style.display = "block";
+  }
+  function myFunction20(imgs) {
+    var expandImg = document.getElementById("expandedImg20");
+    // var imgText = document.getElementById("imgtext20");
+    var imgLink = document.getElementById("imgLink20");
+    expandImg.src = imgs.src;
+    // imgText.innerHTML = imgs.alt;
+
+    const imageName = encodeURIComponent(imgs.alt);
+    imgLink.href = "image-page.html?image=" + encodeURIComponent(imgs.src) + "&name=" + imageName;
+
+    var container = document.getElementById("image-container20");
+    closeAllContainers(container); // Close all other containers
+    container.style.display = "block";
+  }
+  function myFunction21(imgs) {
+    var expandImg = document.getElementById("expandedImg21");
+    // var imgText = document.getElementById("imgtext21");
+    var imgLink = document.getElementById("imgLink21");
+    expandImg.src = imgs.src;
+    // imgText.innerHTML = imgs.alt;
+
+    const imageName = encodeURIComponent(imgs.alt);
+    imgLink.href = "image-page.html?image=" + encodeURIComponent(imgs.src) + "&name=" + imageName;
+
+    var container = document.getElementById("image-container21");
+    closeAllContainers(container); // Close all other containers
+    container.style.display = "block";
+  }
+  function myFunction22(imgs) {
+    var expandImg = document.getElementById("expandedImg22");
+    // var imgText = document.getElementById("imgtext22");
+    var imgLink = document.getElementById("imgLink22");
+    expandImg.src = imgs.src;
+    // imgText.innerHTML = imgs.alt;
+
+    const imageName = encodeURIComponent(imgs.alt);
+    imgLink.href = "image-page.html?image=" + encodeURIComponent(imgs.src) + "&name=" + imageName;
+
+    var container = document.getElementById("image-container22");
+    closeAllContainers(container); // Close all other containers
+    container.style.display = "block";
+  }
+  function myFunction23(imgs) {
+    var expandImg = document.getElementById("expandedImg23");
+    // var imgText = document.getElementById("imgtext23");
+    var imgLink = document.getElementById("imgLink23");
+    expandImg.src = imgs.src;
+    // imgText.innerHTML = imgs.alt;
+
+    const imageName = encodeURIComponent(imgs.alt);
+    imgLink.href = "image-page.html?image=" + encodeURIComponent(imgs.src) + "&name=" + imageName;
+
+    var container = document.getElementById("image-container23");
+    closeAllContainers(container); // Close all other containers
+    container.style.display = "block";
+  }
+  function myFunction24(imgs) {
+    var expandImg = document.getElementById("expandedImg24");
+    // var imgText = document.getElementById("imgtext24");
+    var imgLink = document.getElementById("imgLink24");
+    expandImg.src = imgs.src;
+    // imgText.innerHTML = imgs.alt;
+
+    const imageName = encodeURIComponent(imgs.alt);
+    imgLink.href = "image-page.html?image=" + encodeURIComponent(imgs.src) + "&name=" + imageName;
+
+    var container = document.getElementById("image-container24");
+    closeAllContainers(container); // Close all other containers
+    container.style.display = "block";
+  }
+  function myFunction25(imgs) {
+    var expandImg = document.getElementById("expandedImg25");
+    // var imgText = document.getElementById("imgtext25");
+    var imgLink = document.getElementById("imgLink25");
+    expandImg.src = imgs.src;
+    // imgText.innerHTML = imgs.alt;
+
+    const imageName = encodeURIComponent(imgs.alt);
+    imgLink.href = "image-page.html?image=" + encodeURIComponent(imgs.src) + "&name=" + imageName;
+
+    var container = document.getElementById("image-container25");
+    closeAllContainers(container); // Close all other containers
+    container.style.display = "block";
+  }
+  function myFunction26(imgs) {
+    var expandImg = document.getElementById("expandedImg26");
+    // var imgText = document.getElementById("imgtext26");
+    var imgLink = document.getElementById("imgLink26");
+    expandImg.src = imgs.src;
+    // imgText.innerHTML = imgs.alt;
+
+    const imageName = encodeURIComponent(imgs.alt);
+    imgLink.href = "image-page.html?image=" + encodeURIComponent(imgs.src) + "&name=" + imageName;
+
+    var container = document.getElementById("image-container26");
+    closeAllContainers(container); // Close all other containers
+    container.style.display = "block";
+  }
+  function myFunction27(imgs) {
+    var expandImg = document.getElementById("expandedImg27");
+    // var imgText = document.getElementById("imgtext27");
+    var imgLink = document.getElementById("imgLink27");
+    expandImg.src = imgs.src;
+    // imgText.innerHTML = imgs.alt;
+
+    const imageName = encodeURIComponent(imgs.alt);
+    imgLink.href = "image-page.html?image=" + encodeURIComponent(imgs.src) + "&name=" + imageName;
+
+    var container = document.getElementById("image-container27");
+    closeAllContainers(container); // Close all other containers
+    container.style.display = "block";
+  }
+  function myFunction28(imgs) {
+    var expandImg = document.getElementById("expandedImg28");
+    // var imgText = document.getElementById("imgtext28");
+    var imgLink = document.getElementById("imgLink28");
+    expandImg.src = imgs.src;
+    // imgText.innerHTML = imgs.alt;
+
+    const imageName = encodeURIComponent(imgs.alt);
+    imgLink.href = "image-page.html?image=" + encodeURIComponent(imgs.src) + "&name=" + imageName;
+
+    var container = document.getElementById("image-container28");
+    closeAllContainers(container); // Close all other containers
+    container.style.display = "block";
+  }
+  function myFunction29(imgs) {
+    var expandImg = document.getElementById("expandedImg29");
+    // var imgText = document.getElementById("imgtext29");
+    var imgLink = document.getElementById("imgLink29");
+    expandImg.src = imgs.src;
+    // imgText.innerHTML = imgs.alt;
+
+    const imageName = encodeURIComponent(imgs.alt);
+    imgLink.href = "image-page.html?image=" + encodeURIComponent(imgs.src) + "&name=" + imageName;
+
+    var container = document.getElementById("image-container29");
+    closeAllContainers(container); // Close all other containers
+    container.style.display = "block";
+  }
+  function myFunction30(imgs) {
+    var expandImg = document.getElementById("expandedImg30");
+    // var imgText = document.getElementById("imgtext30");
+    var imgLink = document.getElementById("imgLink30");
+    expandImg.src = imgs.src;
+    // imgText.innerHTML = imgs.alt;
+
+    const imageName = encodeURIComponent(imgs.alt);
+    imgLink.href = "image-page.html?image=" + encodeURIComponent(imgs.src) + "&name=" + imageName;
+
+    var container = document.getElementById("image-container30");
+    closeAllContainers(container); // Close all other containers
+    container.style.display = "block";
+  }
+
+
+
+</script>
+
+</body>
+</html>
+
+
+<footer>
+    <br></br>
+  <p>&copy; 2023 Mountain Man Dan Artistry. All rights reserved.</p>
+  <p>COPYRIGHT NOTICE:
+Daniel Wilson retains all rights to these images. It is illegal to copy, scan or duplicate from the website in any form.
+
+Images on this site may not be used for commercial use without written permission by Daniel Wilson.</p>
+<p>Contact: 
+  <p>Email: superduperbuggy@gmail.com</p></p>
+</footer>
+
+<!--Things to do
+Finish the zoomed image
+create a purchasing site
+link pages
+
+  <div class="columnhor">
+      <img src="Images to Sell/IMG_0439.JPG" alt="Denali Mound" id="horzimage" data-image="image-page.html?image=Images to Sell/IMG_0439.JPG" onclick="myFunction(this);">
+  </div>
+-->

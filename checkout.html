@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Checkout Cart</title>
+    <link rel="stylesheet" href="styles.css"> <!-- External CSS file for styling -->
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="./index.html">Home</a>
+        <a href="./about.html">About</a>
+        <a href="./images.html">Photo Gallery</a>
+        <a href="./checkout.html">Cart</a>
+      </nav>
+      <h1>Checkout Cart</h1>
+    </header>
+  
+    <!-- Cart items container -->
+    <div class="row">
+      <p></p>
+      <h2>Checkout</h2>
+      <div id="cartItems"></div>
+    </div>
+  
+    <!-- A total container in the HTML -->
+    <div id="totalContainer">
+      <p>Total Price: $<span id="totalPrice">0.00</span></p>
+    </div>
+    
+    <br></br>
+    <p> Please complete the boxes below with your full email and address and press Submit Order in order to assure your request is fulfilled.</p>
+    <!-- Add email and address input fields -->
+    <div class="row">
+      <form id="sizeForm">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+  
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required>
+
+        <label for="comment">Comments:</label>
+        <input type="text" id="comment" name="comment" required>
+
+        <button type="submit" id="submitFormButton">Submit Order</button>
+        
+        <br></br>
+        <label for="coupon">Coupon Code:</label>
+        <input type="text" id="coupon" name="coupon" placeholder="Enter coupon code">
+        <button type="button" id="applyCouponButton">Apply Coupon</button>
+      </form>
+    </div>
+
+    <br></br>
+    <!-- PayPal payment button container -->
+    <div class="row">
+      <button id="checkoutButton">Proceed to Payment Through PayPal</button>
+      <button id="checkoutCardButton">Pay with Credit/Debit Card</button>
+    </div>
+    <div id="paypal-button-container"></div>
+
+<style>
+/* Basic styling for the checkout cart */
+
+body {
+  font-family: fantasy;
+  margin: 0;
+  padding: 20px;
+}
+
+header, main, footer {
+  padding: 20px;
+}
+
+header {
+  background-color: #333;
+  color: #FFFFFF;
+}
+
+body { background-color: rgb(84, 160, 179);
+}
+
+main {
+  display: flex;
+  justify-content: space-between;
+  margin: 50px;
+}
+
+section {
+  flex-basis: 48%;
+}
+
+h1, h2 {
+  margin-top: 0;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+#product-list li:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+#cart-items {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+#cart-total {
+  font-weight: bold;
+}
+
+#checkout-btn {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#checkout-btn:hover {
+  background-color: #555;
+}
+
+a:link, a:visited {
+  color: white;
+  padding: 15px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: red;
+}
+</style>
+
+  <!-- PayPal.js script -->
+  <script src="https://www.paypal.com/sdk/js?client-id=AZayuMhOWvuYjvryphG_rTDoavkIwRT1wxAdyUFO5L3tkrEeuI1dntqv-qGbrOw-yMCSSrC3gVQ96CqU&components=buttons"></script>
+  <!-- Email.js script -->
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+  <script>
+    // Global variable for cart items
+    let cartItems = [];
+
+      // Function to prevent accidental form submission when "Enter" key is pressed
+    function preventFormSubmissionOnEnter(event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+      }
+    }
+    
+    // Function to remove an item from the cart
+    function removeItemFromCart(index) {
+      cartItems.splice(index, 1); // Remove the item at the specified index
+      localStorage.setItem("cart", JSON.stringify(cartItems));
+      // Reload the cart items after removal
+      loadCartItems();
+    }
+
+    // Load cart items from local storage and display them on the page
+    function loadCartItems() {
+      const cartItemsContainer = document.getElementById("cartItems");
+      const totalPriceElement = document.getElementById("totalPrice"); // Get the total price element
+
+      // Clear the cart items container before displaying the updated items
+      cartItemsContainer.innerHTML = "";
+      let totalPrice = 0; // Initialize total price
+
+      cartItems.forEach((item, index) => {
+        const cartItemElement = document.createElement("div");
+        cartItemElement.innerHTML = `<img src="${item.src}" alt="${item.alt}" style="max-width: 200px;">
+                                      <p>Price: $${item.price}</p>
+                                      <p>Media: ${item.type} </p>
+                                      <button onclick="removeItemFromCart(${index})">Remove</button>`;
+        cartItemsContainer.appendChild(cartItemElement);
+        totalPrice += parseFloat(item.price); // Accumulate total price
+      });
+
+      // Update the total price in the HTML
+      totalPriceElement.innerText = totalPrice.toFixed(2);
+    }
+
+      // Function to apply the coupon code and update the total price
+    // Function to apply the coupon code and update the total price
+    function applyCoupon() {
+      const couponInput = document.getElementById("coupon");
+      const couponCode = couponInput.value.trim().toLowerCase();
+
+      // Check if the coupon code is valid ("ronnie is the best" is the valid coupon code)
+      if (couponCode === "ronnie is the best") {
+        // Calculate the total amount for the PayPal payment
+        let totalAmount = cartItems.reduce((acc, item) => acc + parseFloat(item.price), 0);
+
+        // Apply the 20% discount
+        const discountAmount = totalAmount * 0.2;
+        totalAmount -= discountAmount;
+
+        // Update the total price in the HTML
+        const totalPriceElement = document.getElementById("totalPrice");
+        totalPriceElement.innerText = totalAmount.toFixed(2);
+
+        // Display a success message
+        alert("Coupon code applied! You received a 20% discount on your purchase.");
+      } else {
+        // Display an error message for an invalid coupon code
+        alert("Invalid coupon code. Please enter a valid coupon code.");
+      }
+    }
+    // Add an event listener to the "Apply Coupon" button to apply the coupon code
+    document.getElementById("applyCouponButton").addEventListener("click", applyCoupon);
+
+    // Function to handle the credit/debit card payment through PayPal
+    function handlePaymentCard() {
+      // Calculate the total amount for the PayPal payment
+      const totalAmount = cartItems.reduce((acc, item) => acc + parseFloat(item.price), 0);
+
+      // Create a PayPal order for credit/debit card payment
+      paypal.Buttons({
+        createOrder: function (data, actions) {
+          return actions.order.create({
+            purchase_units: [
+              {
+                amount: {
+                  currency_code: 'USD',
+                  value: totalAmount,
+                },
+              },
+            ],
+          });
+        },
+        onApprove: function (data, actions) {
+          return actions.order.capture().then(function (details) {
+            // Handle the payment capture success
+            console.log("Capture result", details);
+            alert("Payment successful!");
+          });
+        },
+        onCancel: function (data) {
+          // Handle the payment cancellation
+          console.log("Payment cancelled:", data);
+          alert("Payment cancelled.");
+        },
+        onError: function (error) {
+          // Handle errors during the payment process
+          console.error("Error:", error);
+          alert("An error occurred. Please try again later.");
+        },
+      }).render('#paypal-button-container');
+    }
+
+    // Add an event listener to the PayPal checkout button to handle the payment
+    document.getElementById("checkoutButton").addEventListener("click", function () {
+      // Calculate the total amount for the PayPal payment
+      const totalAmount = cartItems.reduce((acc, item) => acc + parseFloat(item.price), 0);
+      window.location.href = `https://www.paypal.com/paypalme/MountainManDanArt/${totalAmount}`;
+    });
+
+    // Add an event listener to handle credit/debit card payment
+    document.getElementById("checkoutCardButton").addEventListener("click", handlePaymentCard);
+
+    // Load cart items when the page loads
+    document.addEventListener("DOMContentLoaded", function () {
+      // Load cart items from local storage
+      cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+      loadCartItems();
+    });
+
+  // Function to handle the form submission
+  function handleFormSubmission(event) {
+    event.preventDefault();
+    const email = document.getElementById("email").value;
+    const address = document.getElementById("address").value;
+    const comment = document.getElementById("comment").value
+
+    // Construct the message using the cart items
+    const cartMessage = cartItems
+      .map((item) => `Media: ${item.type}, Price: $${item.price}`)
+      .join("<br>");
+
+    // Send the email and address data using Email.js
+    const templateParams = {
+      from_name: email, // Set the sender's name as the email address
+      message: `${cartMessage}  Address: ${address}  Comment: ${comment}`, // Add the cart items and address to the message
+    };
+
+    emailjs
+      .send("service_2ex5kge", "MMDA1", templateParams, "df2WEksEU-YUeAsxd")
+      .then((response) => {
+        // Handle success
+        console.log("Email sent:", response);
+        alert("Order submitted successfully! You will receive an email confirmation shortly.");
+
+        // Proceed to the "Pay with Credit/Debit Card" page
+        handlePaymentCard();
+      })
+      .catch((error) => {
+        // Handle errors
+        console.error("Error sending email:", error);
+        alert("An error occurred while submitting the order. Please try again later.");
+      });
+  }
+
+  // Add an event listener to handle form submission when the submit button is clicked
+  document.getElementById("submitFormButton").addEventListener("click", handleFormSubmission);
+    
+  // Add event listeners to form elements to prevent accidental submission on "Enter" key press
+  const formElements = document.querySelectorAll("#sizeForm input, #sizeForm textarea, #sizeForm select");
+  formElements.forEach((element) => {
+    element.addEventListener("keydown", preventFormSubmissionOnEnter);
+  });
+  </script>
+
+<footer>
+  <br></br>
+<p>&copy; 2023 Mountain Man Dan Artistry. All rights reserved.</p>
+<p>COPYRIGHT NOTICE:
+Daniel Wilson retains all rights to these images. It is illegal to copy, scan or duplicate from the website in any form.
+
+Images on this site may not be used for commercial use without written permission by Daniel Wilson.</p>
+<p>Contact: 
+<p>Email: superduperbuggy@gmail.com</p></p>
+</footer>
+</body>

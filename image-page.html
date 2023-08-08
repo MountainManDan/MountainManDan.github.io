@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Page</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js"></script>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./index.html">Home</a>
+      <a href="./about.html">About</a>
+      <a href="./images.html">Photo Gallery</a>
+      <a href="./checkout.html">Cart</a>
+    </nav>
+    <h1>Image Page</h1> <!-- Add an ID to the header element id="photoTitle" -->
+  </header>
+  <p></p>
+
+  <div class="row">
+    <form id="sizeForm" onsubmit="return addToCart()">
+      <!-- Add the photo type selector -->
+      <label for="typeSelect">Select Photo Media:</label>
+      <select id="typeSelect" name="typeSelect" onchange="toggleSizeSelectors()">
+        <!-- <option value="Digital">Digital</option> -->
+        <option value="Acrylic">Acrylic</option>
+        <option value="Metallic">Metallic</option>
+        <option value="Canvas">Canvas</option>
+        <option value="Paper">Paper</option>
+      </select>
+
+      <!-- Size selector for digital prints -->
+      <div id="digitalSizeSelector" style="display: none;">
+        <label for="digitalSizeSelect">Digital Price:</label>
+        <select id="digitalSizeSelect" name="digitalSizeSelect">
+          <option value="1.00">Digital Attempt- $1.00</option>
+        </select>
+      </div>
+
+      <!-- Size selector for acrylic prints -->
+      <div id="acrylicSizeSelector">
+        <label for="acrylicSizeSelect">Select Acrylic Size:</label>
+        <select id="acrylicSizeSelect" name="acrylicSizeSelect">
+          <option value="100.00">8x10 - $100.00</option>
+          <option value="175.00">12x18 - $175.00</option>
+          <option value="240.00">16x24 - $240.00</option>
+          <option value="350.00">20x30 - $350.00</option>
+          <option value="450.00">24x36 - $450.00</option>
+        </select>
+      </div>
+
+      <!-- Size selector for metallic prints -->
+      <div id="metallicSizeSelector" style="display: none;">
+        <label for="metallicSizeSelect">Select Metallic Size:</label>
+        <select id="metallicSizeSelect" name="metallicSizeSelect">
+          <option value="88.00">8x10 - $88.00</option>
+          <option value="130.00">12x18 - $130.00</option>
+          <option value="205.00">16x24 - $205.00</option>
+          <option value="325.00">20x30 - $325.00</option>
+          <option value="420.00">24x36 - $420.00</option>
+        </select>
+      </div>
+
+      <!-- Size selector for Canvas prints -->
+      <div id="canvasSizeSelector" style="display: none;">
+        <label for="canvasSizeSelect">Select Canvas Size:</label>
+        <select id="canvasSizeSelect" name="canvasSizeSelect">
+          <option value="75.00">8x10 - $75.00</option>
+          <option value="110.00">12x18 - $110.00</option>
+          <option value="175.00">16x24 - $175.00</option>          
+          <option value="275.00">20x30 - $275.00</option>
+        </select>
+      </div>
+
+      <!-- Size selector for paper prints -->
+      <div id="paperSizeSelector" style="display: none;">
+        <label for="paperSizeSelect">Select Paper Size:</label>
+        <select id="paperSizeSelect" name="paperSizeSelect">
+          <option value="40.00">8x10 - $40.00</option>
+          <option value="75.00">12x18 - $75.00</option>
+          <option value="105.00">16x24 - $105.00</option>          
+          <option value="145.00">20x30 - $145.00</option>
+        </select>
+      </div>
+      <p>Alternative sizes may be requested in the comment section of the cart page.</p>
+      <button type="submit">Add to Cart</button>
+    </form>
+  
+<!-- The description container for Acrylic below the photo -->
+<div class="image-container">
+  <!-- Create an image element -->
+  <img id="photoImage" src="" alt="Photo">
+  <div class="watermark-overlay">© Mountain Man Dan</div>
+
+  <!-- Description container for Acrylic -->
+  <div id="acrylicDescription">
+    <h2>Acrylic Description:</h2>
+    <p>
+      Acrylic prints offer a modern and sleek look for photos. The image is printed directly onto
+      a high-quality acrylic material, giving it a vibrant and glossy appearance. The result is a stunning
+      display that enhances the colors and depth of the photograph. Acrylic prints are also durable and
+      resistant to UV light, making them suitable for both indoor and outdoor use.
+    </p>
+
+    <!-- Add two image examples of Acrylic photos -->
+    <div style="text-align: center;">
+      <img src="Supporting Images/AcrylicRoom.jpg" alt="Acrylic Example 1" style="max-width: 200px; margin-right: 20px;">
+      <img src="Supporting Images/AcrylicFrame.jpg" alt="Acrylic Example 2" style="max-width: 200px; margin-right: 20px;">
+      <img src="Supporting Images/AcrylicSide.jpg" alt="Acrylic Example 3" style="max-width: 200px; margin-right: 20px;">
+    </div>
+  </div>
+
+  <!-- Description container for Metallic below the photo -->
+  <div id="metallicDescription" style="display: none;">
+    <h2>Metallic Description:</h2>
+    <p>
+      Metallic prints offer a unique and eye-catching way to showcase one of our photos. The image is printed on 1/4 inch aluminum sheet which gives an exquisite 3D-like appearance. These Metallic prints have a mid-gloss finish that enhances
+      color and contrast, making the photo look vibrant. These prints are perfect for our landscape images.
+    </p>
+
+    <!-- Add two image examples of Metallic photos -->
+    <div style="text-align: center;">
+      <img src="Supporting Images/MetallicRoom.jpg" alt="Metallic Example 1" style="max-width: 200px; margin-right: 20px;">
+      <img src="Supporting Images/MetalHanger.jpg" alt="Metallic Example 2" style="max-width: 200px; margin-right: 20px;">
+      <img src="Supporting Images/MetallicGlaze.jpg" alt="Metallic Example 3" style="max-width: 200px; margin-right: 20px;">
+    </div>
+  </div>
+
+  <!-- Description container for Canvas below the photo -->
+  <div id="canvasDescription" style="display: none;">
+    <h2>Canvas Description:</h2>
+      <p>
+      Canvas prints offer a classic and artistic way to display a photo. The image is printed on high-quality canvas fabric and stretched
+      over a sturdy wooden frame, with a gallery quality look. Canvas prints have a textured surface that creatclassic display. These prints are perfect for more traditional settings.
+      </p>
+
+    <!-- Add two image examples of Canvas photos -->
+    <div style="text-align: center;">
+      <img src="Supporting Images/AcrylicRoom.jpg" alt="Canvas Example 1" style="max-width: 200px; margin-right: 20px;">
+      <img src="Supporting Images/CanvasClose.jpg" alt="Canvas Example 2" style="max-width: 200px; margin-right: 20px;">
+      <img src="Supporting Images/CanvasBacking.jpg" alt="Canvas Example 3" style="max-width: 200px; margin-right: 20px;">
+    </div>
+  </div>
+
+  <!-- Description container for Paper below the photo -->
+  <div id="paperDescription" style="display: none;">
+          <h2>Paper Description:</h2>
+          <p>
+            Paper prints offer a versatile and affordable option for displaying our photos. The image is printed on high-quality photographic paper for sharp and clear details with us including the option for a foam backing for greater support.
+            Paper prints are perfect for framing and can be easily displayed in a variety of settings. Great for fast and easy house decoration and can be used well with adhesive strips so we do not include frames or wall mounting options for this print.
+          </p>
+
+          <!-- Add two image examples of Paper photos -->
+          <div style="text-align: center;">
+            <img src="Supporting Images/PaperExample.jpg" alt="Paper Example 1" style="max-width: 200px; margin-right: 20px;">
+            <img src="Supporting Images/PaperBackground.jpg" alt="Paper Example 2" style="max-width: 200px; margin-right: 20px;">
+            <img src="Supporting Images/PaperBacking.jpg" alt="Paper Example 3" style="max-width: 200px; margin-right: 20px;">
+          </div>
+  </div>
+
+      </div>
+      </div>
+    </div>
+
+
+  </div>
+
+<style>
+header {
+  text-align: left;
+  margin-bottom: 20px;
+}
+.image-container {
+  padding-left: 20px;
+  padding-bottom: 50px;
+}
+img {
+  max-width: 900px;
+  height: auto;
+}
+body {
+  font-family: fantasy;
+  margin: 0;
+  margin: 2.5%
+}
+
+header, main, footer {
+  padding: 20px;
+}
+
+header {
+  background-color: #333;
+  color: #FFFFFF;
+}
+
+body { background-color: rgb(84, 160, 179);}
+
+main {
+  display: flex;
+  justify-content: space-between;
+}
+
+section {
+  flex-basis: 48%;
+}
+
+h1, h2 {
+  margin-top: 0;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+#product-list li:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+#cart-items {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+#cart-total {
+  font-weight: bold;
+}
+
+#checkout-btn {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#checkout-btn:hover {
+  background-color: #555;
+}
+
+a:link, a:visited {
+  color: white;
+  padding: 15px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: red;
+}
+.image-container {
+      padding-left: 20px;
+      padding-bottom: 50px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+.watermark {
+  position: relative;
+  bottom: 75px;
+  left: 50px;
+  color: white;
+  font-size: 20px;
+  font-family: fantasy;
+}
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get the photo URL and name from the query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const photoUrl = urlParams.get("image");
+    const photoName = urlParams.get("name"); // Assume the name is provided as a query parameter named "name"
+
+    // Set the photo URL and name
+    const photoImage = document.getElementById("photoImage");
+    photoImage.src = photoUrl;
+    photoImage.alt = photoName;
+
+    // Update the header with the photo name
+    const photoTitleElement = document.getElementById("photoTitle");
+    photoTitleElement.innerText = photoName;
+  });
+
+  function toggleSizeSelectors() {
+    const typeSelect = document.getElementById("typeSelect");
+    const selectedType = typeSelect.value;
+
+    const acrylicSizeSelector = document.getElementById("acrylicSizeSelector");
+    const metallicSizeSelector = document.getElementById("metallicSizeSelector");
+    const digitalPriceContainer = document.getElementById("digitalSizeSelector");
+    const canvasSizeSelector = document.getElementById("canvasSizeSelector");
+    const paperSizeSelector = document.getElementById("paperSizeSelector");
+
+    // Hide/show size selectors based on the selected type
+    if (selectedType === "Digital") {
+      acrylicSizeSelector.style.display = "none";
+      metallicSizeSelector.style.display = "none";
+      digitalPriceContainer.style.display = "block";
+      canvasSizeSelector.style.display = "none";
+      paperSizeSelector.style.display = "none";
+    } else if (selectedType === "Acrylic") {
+      acrylicSizeSelector.style.display = "block";
+      metallicSizeSelector.style.display = "none";
+      digitalPriceContainer.style.display = "none";
+      canvasSizeSelector.style.display = "none";
+      paperSizeSelector.style.display = "none";
+    } else if (selectedType === "Metallic") {
+      acrylicSizeSelector.style.display = "none";
+      metallicSizeSelector.style.display = "block";
+      digitalPriceContainer.style.display = "none";
+      canvasSizeSelector.style.display = "none";
+      paperSizeSelector.style.display = "none";
+    } else if (selectedType === "Canvas") {
+      acrylicSizeSelector.style.display = "none";
+      metallicSizeSelector.style.display = "none";
+      digitalPriceContainer.style.display = "none";
+      canvasSizeSelector.style.display = "block";
+      paperSizeSelector.style.display = "none";
+    } else if (selectedType === "Paper") {
+      acrylicSizeSelector.style.display = "none";
+      metallicSizeSelector.style.display = "none";
+      digitalPriceContainer.style.display = "none";
+      canvasSizeSelector.style.display = "none";
+      paperSizeSelector.style.display = "block";
+    }
+
+    const acrylicDescription = document.getElementById("acrylicDescription");
+    const metallicDescription = document.getElementById("metallicDescription");
+    const canvasDescription = document.getElementById("canvasDescription");
+    const paperDescription = document.getElementById("paperDescription");
+    
+    // Hide/show the descriptions based on the selected type
+    acrylicDescription.style.display = selectedType === "Acrylic" ? "block" : "none";
+    metallicDescription.style.display = selectedType === "Metallic" ? "block" : "none";
+    canvasDescription.style.display = selectedType === "Canvas" ? "block" : "none";
+    paperDescription.style.display = selectedType === "Paper" ? "block" : "none";
+  }
+
+  function addToCart() {
+      const typeSelect = document.getElementById("typeSelect");
+      const selectedType = typeSelect.value;
+
+      // Calculate the price based on the selected size and type
+      let price;
+      let selectedSize;
+      if (selectedType === "Digital") {
+        const acrylicSizeSelect = document.getElementById("digitalSizeSelect");
+        selectedSize = parseFloat(acrylicSizeSelect.value);
+        price = selectedSize; // Price is based on selected size for acrylic prints
+      } else if (selectedType === "Acrylic") {
+        const acrylicSizeSelect = document.getElementById("acrylicSizeSelect");
+        selectedSize = parseFloat(acrylicSizeSelect.value);
+        price = selectedSize; // Price is based on selected size for acrylic prints
+      } else if (selectedType === "Metallic") {
+        const metallicSizeSelect = document.getElementById("metallicSizeSelect");
+        selectedSize = parseFloat(metallicSizeSelect.value);
+        price = selectedSize; // Price is based on selected size for metallic prints
+      } else if (selectedType === "Canvas") {
+        const canvasSizeSelect = document.getElementById("canvasSizeSelect");
+        selectedSize = parseFloat(canvasSizeSelect.value);
+        price = selectedSize; // Price is based on selected size for canvas prints
+      } else if (selectedType === "Paper") {
+        const paperSizeSelect = document.getElementById("paperSizeSelect");
+        selectedSize = parseFloat(paperSizeSelect.value);
+        price = selectedSize; // Price is based on selected size for paper prints
+      }
+
+      // Get the image source and alt text from the image element
+      const imageElement = document.querySelector(".image-container img");
+      const imgSrc = imageElement.src;
+      const imgAlt = imageElement.alt;
+
+      // Save the selected image and size to the browser's local storage
+      const selectedPhoto = {
+        src: imgSrc,
+        alt: imgAlt,
+        size: selectedSize,
+        type: selectedType,
+        price: price.toFixed(2), // Round price to two decimal places
+      };
+
+      // Retrieve existing cart items from local storage
+      const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+
+      // Add the selected photo to the cart
+      cartItems.push(selectedPhoto);
+
+      // Save updated cart items back to local storage
+      localStorage.setItem("cart", JSON.stringify(cartItems));
+
+      alert("Photo added to cart!");
+      window.location.href = "./checkout.html"; // Navigate to the cart page
+      return false; // Prevent form submission
+    }
+  </script>
+
+</main>
+
+<script src="script.js"></script>

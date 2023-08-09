@@ -8,7 +8,7 @@
 <style>
 * {box-sizing: border-box;}
 
-body {margin: 2.5%; font-family:fantasy}
+body {margin: 2.5%; font-family: "papyrus", fantasy;}
 
 header, main, footer {
   padding: 20px;
@@ -85,6 +85,12 @@ header {
   color: white;
   font-size: 20px;}
 
+/* Font sizing */
+@media (min-width: 1380px) {body {font-size: 16px;} h1 {font-size:32px;}}
+@media (max-width: 1380px) {body {font-size: 14px;} h1 {font-size:24px;}}
+@media (max-width: 700px) {body {font-size: 12px;} h1 {font-size:18px;}}
+@media (max-width: 300px) {body {font-size: 10px;} h1 {font-size:15px;}}
+
 /* Sizing for the images first the verticle and then the horizontal */
 .midimagevert {width: 17%;}
 @media only screen and (min-width: 1380px) {#midimagevert{max-width: 300px; width: 300px;}}
@@ -113,7 +119,7 @@ header {
   left: 50px;
   color: white;
   font-size: 20px;
-  font-family: fantasy;
+  font-family: "papyrus",fantasy;
 }
 
 

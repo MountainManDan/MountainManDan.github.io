@@ -145,7 +145,7 @@ a:hover, a:active {
 </style>
 
   <!-- PayPal.js script -->
-  <script src="https://www.paypal.com/sdk/js?client-id=AZayuMhOWvuYjvryphG_rTDoavkIwRT1wxAdyUFO5L3tkrEeuI1dntqv-qGbrOw-yMCSSrC3gVQ96CqU&components=buttons"></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=AQxRMy6uqvf1ACzdyo4ls12Ns5mMBSOvIQRs8vhfd8uz2gAjgVC5aHWWx62KfoGiCVYzDsQYd1thV4NR&components=buttons"></script>
   <!-- Email.js script -->
   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 
@@ -166,6 +166,10 @@ a:hover, a:active {
       localStorage.setItem("cart", JSON.stringify(cartItems));
       // Reload the cart items after removal
       loadCartItems();
+    }
+
+    function clearCart() {
+      localStorage.removeItem("cart");
     }
 
     // Load cart items from local storage and display them on the page
@@ -245,6 +249,7 @@ a:hover, a:active {
             console.log("Capture result", details);
             alert("Payment successful!");
             // Redirect to the purchase complete page
+            clearCart();
             window.location.href = "purchasecomplete.html";
           });
         },

@@ -23,10 +23,10 @@
       <label for="typeSelect">Select Photo Media:</label>
       <select id="typeSelect" name="typeSelect" onchange="toggleSizeSelectors()">
         <!-- <option value="Digital">Digital</option> -->
-        <option value="Acrylic">Acrylic</option>
-        <option value="Metallic">Metallic</option>
-        <option value="Canvas">Canvas</option>
         <option value="Paper">Paper</option>
+        <option value="Canvas">Canvas</option>
+        <option value="Metallic">Metallic</option>
+        <option value="Acrylic">Acrylic</option>
       </select>
 
       <!-- Size selector for digital prints -->
@@ -38,7 +38,7 @@
       </div>
 
       <!-- Size selector for acrylic prints -->
-      <div id="acrylicSizeSelector">
+      <div id="acrylicSizeSelector" style="display: none;>
         <label for="acrylicSizeSelect">Select Acrylic Size:</label>
         <select id="acrylicSizeSelect" name="acrylicSizeSelect">
           <option value="100.00">8x10 - $100.00</option>
@@ -73,7 +73,7 @@
       </div>
 
       <!-- Size selector for paper prints -->
-      <div id="paperSizeSelector" style="display: none;">
+      <div id="paperSizeSelector">
         <label for="paperSizeSelect">Select Paper Size:</label>
         <select id="paperSizeSelect" name="paperSizeSelect">
           <option value="40.00">8x10 - $40.00</option>

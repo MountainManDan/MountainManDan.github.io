@@ -288,7 +288,8 @@ a:hover, a:active {
     event.preventDefault();
     const email = document.getElementById("email").value;
     const address = document.getElementById("address").value;
-    const comment = document.getElementById("comment").value
+    const comment = document.getElementById("comment").value;
+    const itemsbought = document.getElementById("cartItems");
 
     // Construct the message using the cart items
     const cartMessage = cartItems
@@ -298,7 +299,7 @@ a:hover, a:active {
     // Send the email and address data using Email.js
     const templateParams = {
       from_name: email, // Set the sender's name as the email address
-      message: `${cartMessage}  Address: ${address}  Comment: ${comment}`, // Add the cart items and address to the message
+      message: `${cartMessage}  Address: ${address}  Comment: ${comment} Itemsbought: ${itemsbought}`, // Add the cart items and address to the message
     };
 
     emailjs

@@ -152,6 +152,8 @@ a:hover, a:active {
   <script>
     // Global variable for cart items
     let cartItems = [];
+    // Initialize the cartItemNames array
+    let cartItemNames = [];
 
       // Function to prevent accidental form submission when "Enter" key is pressed
     function preventFormSubmissionOnEnter(event) {
@@ -163,14 +165,21 @@ a:hover, a:active {
     // Function to remove an item from the cart
     function removeItemFromCart(index) {
       cartItems.splice(index, 1); // Remove the item at the specified index
+      cartItemNames.splice(index, 1); // Remove the corresponding name
       localStorage.setItem("cart", JSON.stringify(cartItems));
       // Reload the cart items after removal
       loadCartItems();
-    }
+      }
 
     function clearCart() {
       localStorage.removeItem("cart");
     }
+
+    function addToCart(item) {
+      cartItems.push(item);
+      cartItemNames.push(item.alt); // Push the name of the photo into the cartItemNames array
+      localStorage.setItem("cart", JSON.stringify(cartItems));
+      loadCartItems();}
 
     // Load cart items from local storage and display them on the page
     function loadCartItems() {
@@ -285,39 +294,38 @@ a:hover, a:active {
 
   // Function to handle the form submission
   function handleFormSubmission(event) {
-    event.preventDefault();
-    const email = document.getElementById("email").value;
-    const address = document.getElementById("address").value;
-    const comment = document.getElementById("comment").value;
-    const itemsbought = document.getElementById("cartItems").value;
+  event.preventDefault();
+  const email = document.getElementById("email").value;
+  const address = document.getElementById("address").value;
+  const comment = document.getElementById("comment").value;
 
-    // Construct the message using the cart items
-    const cartMessage = cartItems
-      .map((item) => `Media: ${item.type}, Price: $${item.price}`)
-      .join("<br>");
+  // Construct the message using the cart items
+  const cartMessage = cartItems
+    .map((item) => `Media: ${item.type}, Price: $${item.price}, Name: ${item.alt}`)
+    .join("<br>");
 
-    // Send the email and address data using Email.js
-    const templateParams = {
-      from_name: email, // Set the sender's name as the email address
-      message: `${cartMessage}  Address: ${address}  Comment: ${comment} Itemsbought: ${itemsbought}`, // Add the cart items and address to the message
-    };
+  // Send the email and address data using Email.js
+  const templateParams = {
+    from_name: email,
+    message: `${cartMessage}<br>Address: ${address}<br>Comment: ${comment}`,
+  };
 
-    emailjs
-      .send("service_2ex5kge", "MMDA1", templateParams, "df2WEksEU-YUeAsxd")
-      .then((response) => {
-        // Handle success
-        console.log("Email sent:", response);
-        alert("Order submitted successfully! You will receive an email confirmation shortly.");
+  emailjs
+    .send("service_2ex5kge", "MMDA1", templateParams, "df2WEksEU-YUeAsxd")
+    .then((response) => {
+      // Handle success
+      console.log("Email sent:", response);
+      alert("Order submitted successfully! You will receive an email confirmation shortly.");
 
-        // Proceed to the "Pay with Credit/Debit Card" page
-        handlePaymentCard();
-      })
-      .catch((error) => {
-        // Handle errors
-        console.error("Error sending email:", error);
-        alert("An error occurred while submitting the order. Please try again later.");
-      });
-  }
+      // Proceed to the "Pay with Credit/Debit Card" page
+      handlePaymentCard();
+    })
+    .catch((error) => {
+      // Handle errors
+      console.error("Error sending email:", error);
+      alert("An error occurred while submitting the order. Please try again later.");
+    });
+}
 
   // Add an event listener to handle form submission when the submit button is clicked
   document.getElementById("submitFormButton").addEventListener("click", handleFormSubmission);
